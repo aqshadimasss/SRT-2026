@@ -1,5 +1,7 @@
 "use client";
 
+import LinearIcon from './LinearIcon';
+
 export default function Hero() {
   return (
     <section className="hero-section starfield">
@@ -68,9 +70,9 @@ export default function Hero() {
       </div>
 
       {/* Decorative mascot-style elements */}
-      <div className="hero-deco hero-deco-1" aria-hidden="true">⚙️</div>
-      <div className="hero-deco hero-deco-2" aria-hidden="true">🤖</div>
-      <div className="hero-deco hero-deco-3" aria-hidden="true">🔧</div>
+      <div className="hero-deco hero-deco-1" aria-hidden="true"><LinearIcon name="gear" size={48} color="rgba(255,255,255,0.6)" strokeWidth={1} /></div>
+      <div className="hero-deco hero-deco-2" aria-hidden="true"><LinearIcon name="robot" size={64} color="rgba(255,255,255,0.6)" strokeWidth={1} /></div>
+      <div className="hero-deco hero-deco-3" aria-hidden="true"><LinearIcon name="wrench" size={48} color="rgba(255,255,255,0.6)" strokeWidth={1} /></div>
 
       <style jsx>{`
         .hero-section {
@@ -170,13 +172,12 @@ export default function Hero() {
         .hero-deco {
           position: absolute;
           z-index: 2;
-          font-size: 48px;
           opacity: 0.15;
           pointer-events: none;
           animation: float 6s ease-in-out infinite;
         }
         .hero-deco-1 { top: 15%; right: 8%; animation-delay: 0s; }
-        .hero-deco-2 { top: 45%; right: 5%; animation-delay: 2s; font-size: 64px; }
+        .hero-deco-2 { top: 45%; right: 5%; animation-delay: 2s; }
         .hero-deco-3 { bottom: 25%; right: 12%; animation-delay: 4s; }
 
         @keyframes float {

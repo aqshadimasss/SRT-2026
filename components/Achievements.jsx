@@ -1,30 +1,32 @@
 "use client";
 
+import LinearIcon from './LinearIcon';
+
 export default function Achievements() {
   const achievements = [
     {
       year: '2025 • KRTI',
       title: '16 Besar KRTI',
       desc: 'Kontes Robot Terbang Indonesia (KRTI) 2025.',
-      icon: '🏆'
+      icon: 'trophy'
     },
     {
       year: '2025 • KRAI',
       title: '16 Besar KRAI',
       desc: 'Kontes Robot ABU Indonesia (KRAI) 2025.',
-      icon: '🥇'
+      icon: 'medal'
     },
     {
       year: '2024 • KRSRI',
       title: 'Lolos KRSRI 2024',
       desc: 'Kontes Robot SAR Indonesia (KRSRI) 2024.',
-      icon: '🎯'
+      icon: 'target'
     },
     {
       year: '2024 • KRTI',
       title: 'Lolos KRTI 2024',
       desc: 'Kontes Robot Terbang Indonesia (KRTI) 2024.',
-      icon: '🚀'
+      icon: 'rocket'
     }
   ];
 
@@ -48,7 +50,7 @@ export default function Achievements() {
               className="achievement-card card-feature-dark animate-fade-in"
               style={{ animationDelay: `${i * 0.1}s` }}
             >
-              <div className="achievement-icon">{item.icon}</div>
+              <div className="achievement-icon"><LinearIcon name={item.icon} size={36} color="var(--colors-accent-lime)" strokeWidth={1.3} /></div>
               <p className="micro-cap achievement-year">{item.year}</p>
               <h3 className="heading-md achievement-title">{item.title}</h3>
               <p className="body-md achievement-desc">{item.desc}</p>
@@ -100,7 +102,7 @@ export default function Achievements() {
           border-color: var(--colors-accent-lime);
         }
         .achievement-icon {
-          font-size: 36px;
+          line-height: 1;
           margin-bottom: var(--spacing-sm);
         }
         .achievement-year {

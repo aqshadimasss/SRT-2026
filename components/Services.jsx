@@ -1,31 +1,33 @@
 "use client";
 
+import LinearIcon from './LinearIcon';
+
 export default function Services() {
   const services = [
     {
       title: "Full Web Development",
       description: "One-stop Website Development Solution tailored to your specific business requirements.",
-      icon: "🌐"
+      icon: "globe"
     },
     {
       title: "AI & ML Solutions",
       description: "AI/ML consulting and model dev, Data analysis, Performance tracking and automation.",
-      icon: "🤖"
+      icon: "robot"
     },
     {
       title: "App Development",
       description: "Provide customized mobile application development services to enhance user experience.",
-      icon: "📱"
+      icon: "smartphone"
     },
     {
       title: "Product Development",
       description: "Provide innovative product solutions from ideation and prototyping to final launch.",
-      icon: "💡"
+      icon: "lightbulb"
     },
     {
       title: "Cybersecurity Services",
       description: "Protect digital assets and reduce security risks with comprehensive audits and fixes.",
-      icon: "🛡️"
+      icon: "shield"
     }
   ];
 
@@ -40,7 +42,7 @@ export default function Services() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px' }}>
           {services.map((svc, idx) => (
             <div key={idx} className="glass card" style={{ position: 'relative', overflow: 'hidden' }}>
-               <div style={{ fontSize: '3rem', marginBottom: '24px' }}>{svc.icon}</div>
+               <div style={{ marginBottom: '24px' }}><LinearIcon name={svc.icon} size={48} color="var(--colors-accent-lime)" strokeWidth={1.2} /></div>
                <h3 className="heading-md" style={{ marginBottom: '16px' }}>{svc.title}</h3>
                <p className="text-muted">{svc.description}</p>
                {/* Hover Effect Border Bottom */}

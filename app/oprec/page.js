@@ -81,7 +81,7 @@ export default function OprecPage() {
           <div className="animate-fade-in" style={{ animationDelay: '0.2s' }}>
             <Link href="/announcement-oprec">
               <button className="btn-primary" style={{ padding: '16px 36px', fontSize: '1.1rem', borderRadius: '12px', border: 'none', background: 'var(--accent-gradient)', fontWeight: 700, cursor: 'pointer', boxShadow: '0 0 25px rgba(114, 9, 183, 0.4)' }}>
-                Check Selection Results ➔
+                Check Selection Results <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', marginLeft: '6px' }}><line x1="4" y1="12" x2="20" y2="12"/><polyline points="14 6 20 12 14 18"/></svg>
               </button>
             </Link>
           </div>

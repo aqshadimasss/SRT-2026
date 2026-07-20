@@ -125,9 +125,9 @@ export default function OprecAnnouncementPage() {
                     <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.9rem' }}>Allocated Division: <span style={{ color: 'var(--accent-primary)', fontWeight: 600 }}>{individualResult.track}</span></p>
                     
                     {individualResult.status === 'ACCEPTED' ? (
-                      <p style={{ color: '#4caf50', fontSize: '0.8rem', fontWeight: 600, marginTop: '12px' }}>✓ Welcome to the team! Check your email and messaging handles for division briefing times and orientation schedules.</p>
+                      <p style={{ color: '#4caf50', fontSize: '0.8rem', fontWeight: 600, marginTop: '12px', display: 'flex', alignItems: 'flex-start', gap: '6px' }}><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4caf50" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, marginTop: '1px' }}><polyline points="20 6 9 17 4 12"/></svg> Welcome to the team! Check your email and messaging handles for division briefing times and orientation schedules.</p>
                     ) : (
-                      <p style={{ color: '#ff9800', fontSize: '0.8rem', fontWeight: 600, marginTop: '12px' }}>⌛ You are on the priority waitlist. We will notify you if placements open.</p>
+                      <p style={{ color: '#ff9800', fontSize: '0.8rem', fontWeight: 600, marginTop: '12px', display: 'flex', alignItems: 'flex-start', gap: '6px' }}><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ff9800" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, marginTop: '1px' }}><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> You are on the priority waitlist. We will notify you if placements open.</p>
                     )}
                   </div>
                 )}

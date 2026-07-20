@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from 'react';
+import LinearIcon from './LinearIcon';
 
 export default function Discover() {
   const [openFaq, setOpenFaq] = useState(null);
@@ -25,7 +26,7 @@ export default function Discover() {
             
             <div className="watch-media-btn">
               <div className="play-icon">
-                <span>▶</span>
+                <LinearIcon name="play" size={14} color="var(--colors-text-primary)" strokeWidth={2} style={{ marginLeft: '2px' }} />
               </div>
               <span className="button-cap-light watch-text">WATCH THE MEDIA</span>
             </div>
@@ -52,15 +53,15 @@ export default function Discover() {
           {/* Right Side: Media Grid */}
           <div className="media-grid">
              {[
-               { label: 'Workshop', emoji: '🛠️' },
-               { label: 'Competition', emoji: '🏆' },
-               { label: 'Team Building', emoji: '🤝' },
-               { label: 'Lab Session', emoji: '🔬' }
+               { label: 'Workshop', icon: 'tools' },
+               { label: 'Competition', icon: 'trophy' },
+               { label: 'Team Building', icon: 'handshake' },
+               { label: 'Lab Session', icon: 'microscope' }
              ].map((item, i) => (
                 <div key={i} className="media-card">
-                  <div className="media-card-emoji">{item.emoji}</div>
+                  <div className="media-card-emoji"><LinearIcon name={item.icon} size={40} color="var(--colors-accent-lime)" strokeWidth={1.2} /></div>
                   <div className="media-play-btn">
-                    <span>▶</span>
+                    <LinearIcon name="play" size={12} color="var(--colors-text-primary)" strokeWidth={2} style={{ marginLeft: '2px' }} />
                   </div>
                   <p className="micro-cap media-label">{item.label}</p>
                 </div>
@@ -199,9 +200,9 @@ export default function Discover() {
           transform: scale(1.03);
         }
         .media-card-emoji {
-          font-size: 40px;
           opacity: 0.35;
           transition: all 0.3s ease;
+          line-height: 1;
         }
         .media-card:hover .media-card-emoji {
           opacity: 0.6;
@@ -218,10 +219,8 @@ export default function Discover() {
           justify-content: center;
           transition: all 0.3s ease;
         }
-        .media-play-btn span {
+        .media-play-btn svg {
           color: var(--colors-text-primary);
-          font-size: 12px;
-          margin-left: 2px;
         }
         .media-card:hover .media-play-btn {
           background: var(--colors-accent-lime);

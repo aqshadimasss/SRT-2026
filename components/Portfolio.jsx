@@ -30,7 +30,7 @@ export default function Portfolio() {
                 <p style={{ color: 'var(--accent-primary)', fontSize: '0.875rem', fontWeight: 600, marginBottom: '8px' }}>{proj.category}</p>
                 <h3 className="heading-md" style={{ marginBottom: '16px' }}>{proj.title}</h3>
                 <a href={proj.link} style={{ color: 'var(--text-primary)', fontWeight: 500, display: 'inline-flex', alignItems: 'center', gap: '8px' }} className="portfolio-link">
-                  View Detail <span style={{ transition: 'transform 0.3s ease' }}>→</span>
+                  View Detail <span style={{ transition: 'transform 0.3s ease', display: 'inline-flex' }}><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
                 </a>
               </div>
               <style jsx>{`
