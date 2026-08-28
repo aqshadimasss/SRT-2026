@@ -51,6 +51,20 @@ export default function Footer() {
     }
   ];
 
+  const sponsorsList = [
+    { name: 'Buana Karya', src: '/sponsors/Buana Karya.webp' },
+    { name: 'DANZ PUSAT', src: '/sponsors/DANZ PUSAT.webp' },
+    { name: 'Kedai Teknik', src: '/sponsors/Kedai Teknik.webp' },
+    { name: 'LOSQ', src: '/sponsors/LOSQ.webp', className: 'bg-white' },
+    { name: 'MFX', src: '/sponsors/MFX.webp' },
+    { name: 'Prosandang', src: '/sponsors/Prosandang.webp', className: 'bg-white' },
+    { name: 'RUMAH JASA CNC', src: '/sponsors/RUMAH JASA CNC.webp' },
+    { name: 'Sewun indo konsultan', src: '/sponsors/Sewun indo konsultan.webp' },
+    { name: 'Trika Putih', src: '/sponsors/Trika Putih.webp' },
+    { name: 'gemfan', src: '/sponsors/gemfan.webp' },
+    { name: 'yeay apparel', src: '/sponsors/yeay apparel.webp' }
+  ];
+
   return (
     <footer className="srt-footer">
       {/* Lime Squiggly Divider */}
@@ -92,18 +106,17 @@ export default function Footer() {
           <div className="footer-col">
             <h4 className="button-cap footer-col-title">Big Thanks To</h4>
             <div className="sponsor-row">
-              <div className="sponsor-badge">
-                <img src="/images/robosoedwear.png" alt="Robosoedwear" className="sponsor-img" onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'block'; }} />
-                <span className="sponsor-fallback">ROBOSOEDWEAR</span>
-              </div>
-              <div className="sponsor-badge">
-                <img src="/images/logooemah.jpg" alt="Oemah" className="sponsor-img" onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'block'; }} />
-                <span className="sponsor-fallback">OEMAH</span>
-              </div>
-              <div className="sponsor-badge">
-                <img src="/images/smartfren.png" alt="Smartfren" className="sponsor-img" onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'block'; }} />
-                <span className="sponsor-fallback">SMARTFREN</span>
-              </div>
+              {sponsorsList.map((sponsor) => (
+                <div key={sponsor.name} className="sponsor-badge">
+                  <img 
+                    src={sponsor.src} 
+                    alt={sponsor.name} 
+                    className={sponsor.className ? `sponsor-img ${sponsor.className}` : "sponsor-img"} 
+                    onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'block'; }} 
+                  />
+                  <span className="sponsor-fallback">{sponsor.name}</span>
+                </div>
+              ))}
             </div>
           </div>
 

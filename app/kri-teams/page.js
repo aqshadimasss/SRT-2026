@@ -4,28 +4,9 @@ import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import Countdown from '../../components/Countdown';
 
+import { teams } from './arrays';
+
 export default function KRITeams() {
-  const blakasutha = [
-    { name: 'Muhamad Kelvin Adiyasa', role: 'Head of Blakasutha' },
-    { name: 'Zaidan Al Ghoffari', role: 'Mechanic' },
-    { name: 'Ahmad Faisal Falah', role: 'Electronic' },
-    { name: 'Daffa Randika', role: 'Programmer' },
-    // ... shortened for visual presentation
-  ];
-
-  const satria = [
-    { name: 'Galuh Agung Wicaksono', role: 'Head of Satria' },
-    { name: 'Nadaa Mufiidah Sari', role: 'Mechanic' },
-    { name: 'Rafid Zaki Nurrohman', role: 'Electronic' },
-    { name: 'Tegar Dwi Agung Saputra', role: 'Programmer' },
-  ];
-
-  const yudishtira = [
-    { name: 'Rizki Nugroho Kurniawan', role: 'Head of Yudishtira' },
-    { name: 'Nabil Emillul Fata', role: 'Mechanic' },
-    { name: 'Indah Karisma Hidayah Riyanto', role: 'Electronic' },
-    { name: 'Muhammad Sholahatul Haq', role: 'Programmer' },
-  ];
 
   const TeamSection = ({ title, members, delay }) => (
     <div className="animate-fade-in" style={{ animationDelay: delay, marginBottom: '80px' }}>
@@ -34,12 +15,21 @@ export default function KRITeams() {
       </h3>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '32px' }}>
         {members.map((member, index) => (
-          <div key={index} style={{ textAlign: 'center' }}>
-            <div style={{ width: '80px', height: '80px', borderRadius: '50%', background: 'rgba(255,255,255,0.05)', margin: '0 auto 16px', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid rgba(255,255,255,0.1)' }}>
-               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent-primary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <div key={index} className="team-card animate-fade-in" style={{ animationDelay: `${index * 0.05}s` }}>
+            <div className="team-image-wrapper">
+               {member.imagePath ? (
+                 <img src={member.imagePath} alt={member.name} className="team-image" />
+               ) : (
+                 <div className="team-image" style={{ background: 'var(--colors-surface-night)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                   <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--colors-primary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                 </div>
+               )}
+              <div className="team-overlay"></div>
+              <div className="team-info">
+                <h4 className="team-name">{member.name}</h4>
+                <p className="team-role">{member.role}</p>
+              </div>
             </div>
-            <h4 style={{ fontSize: '1rem', fontWeight: 600, color: '#fff', marginBottom: '4px' }}>{member.name}</h4>
-            <p style={{ color: 'var(--accent-primary)', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '1px' }}>{member.role}</p>
           </div>
         ))}
       </div>
@@ -90,29 +80,91 @@ export default function KRITeams() {
       {/* Teams Roster */}
       <section style={{ padding: '120px 0', background: 'var(--bg-secondary)' }}>
         <div className="container">
-          <TeamSection title="Blakasutha" members={blakasutha} delay="0s" />
-          <TeamSection title="Satria" members={satria} delay="0.2s" />
-          <TeamSection title="Yudishtira" members={yudishtira} delay="0.4s" />
+          {teams.map((team, idx) => (
+            <TeamSection key={idx} title={team.name} members={team.members} delay={`${idx * 0.2}s`} />
+          ))}
         </div>
       </section>
 
       <Footer />
 
-      <style jsx>{`
+      <style jsx global>{`
+        .breadcrumb-link:hover {
+          color: var(--accent-primary) !important;
+        }
         .team-section-title {
-          font-size: 2.5rem;
+          font-size: 2.2rem;
           font-weight: 800;
-          color: var(--accent-primary);
-          margin-bottom: 32px;
-          text-align: center;
+          color: #fff;
           text-transform: uppercase;
           letter-spacing: 2px;
+          margin-bottom: 32px;
+          border-bottom: 2px solid rgba(255,255,255,0.1);
+          padding-bottom: 16px;
         }
         @media (max-width: 768px) {
           .team-section-title {
             font-size: 1.8rem;
             margin-bottom: 20px;
           }
+        }
+        
+        /* New Team Card Style */
+        .team-card {
+          border-radius: 8px;
+          overflow: hidden;
+          position: relative;
+          aspect-ratio: 3/4;
+          background: #d4d4d4; /* Default background for transparent images */
+          transition: transform 0.3s ease;
+        }
+        .team-card:hover {
+          transform: translateY(-4px);
+        }
+        .team-image-wrapper {
+          width: 100%;
+          height: 100%;
+          position: relative;
+        }
+        .team-image {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          filter: grayscale(100%);
+          transition: filter 0.4s ease, transform 0.6s ease;
+        }
+        .team-card:hover .team-image {
+          filter: grayscale(0%);
+          transform: scale(1.05);
+        }
+        .team-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 50%);
+          z-index: 1;
+          pointer-events: none;
+        }
+        .team-info {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          padding: 20px;
+          z-index: 2;
+          text-align: left;
+        }
+        .team-name {
+          color: #ffffff;
+          margin-bottom: 4px;
+          font-size: 16px;
+          font-weight: 700;
+        }
+        .team-role {
+          color: #ffffff;
+          font-size: 12px;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          font-weight: 600;
         }
       `}</style>
     </main>

@@ -193,8 +193,6 @@ export default function Navbar() {
         }
         .srt-nav.scrolled {
           background: var(--colors-nav-bg);
-          backdrop-filter: blur(20px);
-          -webkit-backdrop-filter: blur(20px);
           border-bottom: 1px solid var(--colors-card-border);
           padding: var(--spacing-sm) 0;
         }
@@ -241,7 +239,6 @@ export default function Navbar() {
           font-size: 13px;
           font-weight: 600;
           padding: var(--spacing-sm) var(--spacing-md);
-          border-radius: var(--rounded-md);
           transition: all 0.2s ease;
           display: inline-flex;
           align-items: center;
@@ -270,22 +267,17 @@ export default function Navbar() {
           min-width: 220px;
           background: var(--colors-dropdown-bg);
           border: 1px solid var(--colors-card-border);
-          border-radius: var(--rounded-xl);
           padding: var(--spacing-sm);
           display: flex;
           flex-direction: column;
           gap: 2px;
-          box-shadow: rgba(0,0,0,0.25) 0 12px 36px;
           animation: slideDown 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-          backdrop-filter: blur(16px);
-          -webkit-backdrop-filter: blur(16px);
         }
         .dropdown-item {
           padding: var(--spacing-sm) var(--spacing-lg);
           color: var(--colors-text-secondary);
           font-size: 14px;
           font-weight: 500;
-          border-radius: var(--rounded-md);
           transition: all 0.15s ease;
           white-space: nowrap;
         }
@@ -315,7 +307,6 @@ export default function Navbar() {
           background: var(--colors-ghost-bg);
           border: 1px solid var(--colors-card-border);
           color: var(--colors-text-primary);
-          border-radius: var(--rounded-md);
         }
         .mobile-drawer {
           position: absolute;
@@ -325,22 +316,17 @@ export default function Navbar() {
           margin-top: var(--spacing-sm);
           background: var(--colors-dropdown-bg);
           border: 1px solid var(--colors-card-border);
-          border-radius: var(--rounded-xl);
           padding: var(--spacing-lg);
           display: flex;
           flex-direction: column;
           gap: var(--spacing-xs);
-          box-shadow: rgba(0,0,0,0.4) 0 20px 50px;
           animation: slideDown 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-          backdrop-filter: blur(20px);
-          -webkit-backdrop-filter: blur(20px);
           z-index: 999;
         }
         .mobile-link {
           padding: var(--spacing-sm) var(--spacing-md);
           font-weight: 600;
           color: var(--colors-text-primary);
-          border-radius: var(--rounded-md);
           transition: background 0.15s ease;
           font-size: 15px;
         }

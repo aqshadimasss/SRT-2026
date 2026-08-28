@@ -2,15 +2,51 @@
 
 export default function Teams() {
   const management = [
-    { name: 'Muhammad Rizqy', role: 'President' },
-    { name: 'Adhe Akbar Azanni', role: 'Vice President' },
-    { name: 'Khoirunnisaa', role: 'Head of Secretary' },
-    { name: 'Khaerani Julieta', role: 'Financial Manager' },
-    { name: 'Ramania Nur', role: 'HR Development' },
-    { name: 'Farizza Ginna', role: 'Public Relation' },
-    { name: 'Rizka Nur', role: 'Sponsorship' },
-    { name: 'Amanda Jovita', role: 'Creative Media' },
-    { name: 'Arimbi Sukma', role: 'Team Manager' },
+    {
+      "name": "Hanif Muhamad Anam",
+      "role": "President",
+      "imagePath": "/teams/BPH/President.webp"
+    },
+    {
+      "name": "Rio Juharno Putra",
+      "role": "Vice President",
+      "imagePath": "/teams/BPH/Vice President.webp"
+    },
+    {
+      "name": "Shafira Arintia Zen",
+      "role": "Head Of Secretary",
+      "imagePath": "/teams/BPH/Head Of Secretary.webp"
+    },
+    {
+      "name": "Salsabila Arvani Hasibuan",
+      "role": "Head Of Financial Manager",
+      "imagePath": "/teams/BPH/Head Of Financial Manager.webp"
+    },
+    {
+      "name": "Pratiwi Rahmadiana",
+      "role": "Head Of Human Resource",
+      "imagePath": "/teams/HRD/Head Of Human Resource.webp"
+    },
+    {
+      "name": "Muhammad Habib Al Fatih",
+      "role": "HEAD OF TEAM MANAGER",
+      "imagePath": "/teams/MANAGER/HEAD OF TEAM MANAGER.webp"
+    },
+    {
+      "name": "Citra Salsabila",
+      "role": "Head Of Creative Media",
+      "imagePath": "/teams/MEDKRE/Head Of Creative Media.webp"
+    },
+    {
+      "name": "Kia Shadra Afiqa Busono",
+      "role": "HEAD OF PR",
+      "imagePath": "/teams/PR/HEAD OF PR.webp"
+    },
+    {
+      "name": "Muhammad Akbar Firmansyah",
+      "role": "Head Of Sponsor",
+      "imagePath": "/teams/SPONSOR/Head Of Sponsor.webp"
+    }
   ];
 
   return (
@@ -25,7 +61,7 @@ export default function Teams() {
             Get to Know Our Management and Technical Teams
           </p>
         </div>
-        
+
         <div className="teams-grid">
           {management.map((member, index) => (
             <div
@@ -33,14 +69,18 @@ export default function Teams() {
               className="team-card animate-fade-in"
               style={{ animationDelay: `${index * 0.05}s` }}
             >
-              <div className="team-avatar">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                  <circle cx="12" cy="7" r="4"/>
-                </svg>
+              <div className="team-image-wrapper">
+                <img
+                  src={member.imagePath}
+                  alt={member.role}
+                  className="team-image"
+                />
+                <div className="team-overlay"></div>
+                <div className="team-info">
+                  <h4 className="team-name">{member.name}</h4>
+                  <p className="team-role">{member.role}</p>
+                </div>
               </div>
-              <h4 className="heading-sm team-name">{member.name}</h4>
-              <p className="micro-cap team-role">{member.role}</p>
             </div>
           ))}
         </div>
@@ -57,7 +97,7 @@ export default function Teams() {
           margin-bottom: 64px;
         }
         .teams-eyebrow {
-          color: var(--colors-accent-pink);
+          color: var(--colors-primary);
           margin-bottom: var(--spacing-md);
         }
         .teams-title {
@@ -71,45 +111,64 @@ export default function Teams() {
         }
         .teams-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-          gap: var(--spacing-xxl);
+          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+          gap: var(--spacing-xl);
         }
         .team-card {
-          text-align: center;
-          padding: var(--spacing-xxl) var(--spacing-lg);
-          border-radius: var(--rounded-xxl);
-          border: 1px solid transparent;
-          transition: all 0.3s ease;
+          border-radius: 8px;
+          overflow: hidden;
+          position: relative;
+          aspect-ratio: 3/4;
+          background: #d4d4d4; /* Default background for transparent images */
+          transition: transform 0.3s ease;
         }
         .team-card:hover {
-          background: var(--colors-ghost-bg);
-          border-color: var(--colors-card-border);
           transform: translateY(-4px);
         }
-        .team-avatar {
-          width: 72px;
-          height: 72px;
-          border-radius: var(--rounded-full);
-          background: var(--colors-ghost-bg);
-          margin: 0 auto var(--spacing-lg);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          border: 1px solid var(--colors-card-border);
-          color: var(--colors-accent-pink);
-          transition: all 0.3s ease;
+        .team-image-wrapper {
+          width: 100%;
+          height: 100%;
+          position: relative;
         }
-        .team-card:hover .team-avatar {
-          border-color: var(--colors-accent-pink);
-          background: rgba(250, 127, 170, 0.1);
+        .team-image {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          filter: grayscale(100%);
+          transition: filter 0.4s ease, transform 0.6s ease;
+        }
+        .team-card:hover .team-image {
+          filter: grayscale(0%);
+          transform: scale(1.05);
+        }
+        .team-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 50%);
+          z-index: 1;
+          pointer-events: none;
+        }
+        .team-info {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          padding: 20px;
+          z-index: 2;
+          text-align: left;
         }
         .team-name {
-          color: var(--colors-text-primary);
-          margin-bottom: var(--spacing-xs);
+          color: #ffffff;
+          margin-bottom: 4px;
           font-size: 16px;
+          font-weight: 700;
         }
         .team-role {
-          color: var(--colors-accent-lime);
+          color: #ffffff;
+          font-size: 12px;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          font-weight: 600;
         }
 
         @media (max-width: 576px) {

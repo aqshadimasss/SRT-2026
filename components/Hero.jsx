@@ -34,37 +34,34 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Stats Bar */}
-      <div className="stats-bar">
-        <div className="container">
-          <div className="stats-grid">
-            <div className="stat-item">
-              <div className="stat-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/></svg>
-              </div>
-              <div>
-                <p className="micro-cap stat-label">Projects</p>
-                <p className="heading-sm stat-value">0+ Completed</p>
-              </div>
-            </div>
-            <div className="stat-item">
-              <div className="stat-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
-              </div>
-              <div>
-                <p className="micro-cap stat-label">Awards</p>
-                <p className="heading-sm stat-value">0+ Won</p>
-              </div>
-            </div>
-            <div className="stat-item">
-              <div className="stat-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-              </div>
-              <div>
-                <p className="micro-cap stat-label">Members</p>
-                <p className="heading-sm stat-value">0+ Active</p>
-              </div>
-            </div>
+      {/* Sponsors Marquee */}
+      <div className="sponsors-marquee-container">
+        <div className="sponsors-marquee">
+          <div className="sponsors-track">
+            {/* First set */}
+            <img src="/sponsors/Buana Karya.webp" alt="Buana Karya" className="sponsor-logo" />
+            <img src="/sponsors/DANZ PUSAT.webp" alt="DANZ PUSAT" className="sponsor-logo" />
+            <img src="/sponsors/Kedai Teknik.webp" alt="Kedai Teknik" className="sponsor-logo" />
+            <img src="/sponsors/LOSQ.webp" alt="LOSQ" className="sponsor-logo bg-white" />
+            <img src="/sponsors/MFX.webp" alt="MFX" className="sponsor-logo" />
+            <img src="/sponsors/Prosandang.webp" alt="Prosandang" className="sponsor-logo bg-white" />
+            <img src="/sponsors/RUMAH JASA CNC.webp" alt="RUMAH JASA CNC" className="sponsor-logo" />
+            <img src="/sponsors/Sewun indo konsultan.webp" alt="Sewun indo konsultan" className="sponsor-logo" />
+            <img src="/sponsors/Trika Putih.webp" alt="Trika Putih" className="sponsor-logo" />
+            <img src="/sponsors/gemfan.webp" alt="gemfan" className="sponsor-logo" />
+            <img src="/sponsors/yeay apparel.webp" alt="yeay apparel" className="sponsor-logo" />
+            {/* Second set for infinite loop */}
+            <img src="/sponsors/Buana Karya.webp" alt="Buana Karya" className="sponsor-logo" />
+            <img src="/sponsors/DANZ PUSAT.webp" alt="DANZ PUSAT" className="sponsor-logo" />
+            <img src="/sponsors/Kedai Teknik.webp" alt="Kedai Teknik" className="sponsor-logo" />
+            <img src="/sponsors/LOSQ.webp" alt="LOSQ" className="sponsor-logo bg-white" />
+            <img src="/sponsors/MFX.webp" alt="MFX" className="sponsor-logo" />
+            <img src="/sponsors/Prosandang.webp" alt="Prosandang" className="sponsor-logo bg-white" />
+            <img src="/sponsors/RUMAH JASA CNC.webp" alt="RUMAH JASA CNC" className="sponsor-logo" />
+            <img src="/sponsors/Sewun indo konsultan.webp" alt="Sewun indo konsultan" className="sponsor-logo" />
+            <img src="/sponsors/Trika Putih.webp" alt="Trika Putih" className="sponsor-logo" />
+            <img src="/sponsors/gemfan.webp" alt="gemfan" className="sponsor-logo" />
+            <img src="/sponsors/yeay apparel.webp" alt="yeay apparel" className="sponsor-logo" />
           </div>
         </div>
       </div>
@@ -128,44 +125,56 @@ export default function Hero() {
           box-shadow: rgb(21,15,35) 0 0 12px 8px;
         }
 
-        /* Stats Bar */
-        .stats-bar {
+        /* Sponsors Marquee */
+        .sponsors-marquee-container {
           position: relative;
           z-index: 2;
-          border-top: 1px solid var(--colors-card-border);
-          background: var(--colors-surface-night);
+          background: #040a18; /* Deep Midnight Blue */
+          border-top: 1px solid rgba(2, 74, 216, 0.4);
+          border-bottom: 1px solid rgba(2, 74, 216, 0.4);
+          box-shadow: inset 0 0 40px rgba(2, 74, 216, 0.2); /* Subtle inner blue glow */
           margin-top: auto;
+          overflow: hidden;
+          padding: 24px 0;
         }
 
-        .stats-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: var(--spacing-xl);
-          padding: var(--spacing-xl) 0;
+        .sponsors-marquee {
+          width: 100%;
+          overflow: hidden;
         }
-        .stat-item {
+
+        .sponsors-track {
           display: flex;
           align-items: center;
-          gap: var(--spacing-lg);
+          gap: 80px;
+          width: max-content;
+          animation: marquee 40s linear infinite;
         }
-        .stat-icon {
-          width: 44px;
+
+        .sponsor-logo {
           height: 44px;
-          border: 1px solid var(--colors-accent-lime);
-          border-radius: var(--rounded-full);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: var(--colors-accent-lime);
-          flex-shrink: 0;
+          object-fit: contain;
+          opacity: 0.85;
+          /* Adds a soft white halo so dark logos are readable on dark backgrounds */
+          filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.6)) drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
+          transition: all 0.4s ease;
         }
-        .stat-label {
-          color: var(--colors-text-secondary);
-          margin-bottom: 2px;
+
+        .sponsor-logo:hover {
+          opacity: 1;
+          filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.9)) drop-shadow(0 0 15px rgba(255, 255, 255, 0.4));
+          transform: scale(1.05);
         }
-        .stat-value {
-          color: var(--colors-text-primary);
-          font-size: 16px;
+
+        .sponsor-logo.bg-white {
+          background-color: #ffffff;
+          padding: 4px 12px;
+          border-radius: var(--rounded-sm);
+        }
+
+        @keyframes marquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
         }
 
         /* Decorative emoji mascots */
@@ -194,9 +203,11 @@ export default function Hero() {
           .hero-content {
             padding-bottom: 48px;
           }
-          .stats-grid {
-            grid-template-columns: 1fr;
-            gap: var(--spacing-lg);
+          .sponsors-marquee-container {
+            padding: var(--spacing-lg) 0;
+          }
+          .sponsor-logo {
+            height: 36px;
           }
           .hero-deco {
             display: none;

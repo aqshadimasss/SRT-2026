@@ -34,149 +34,89 @@ function RosterCard({ name, role, imagePath }) {
   const initials = getInitials(name);
 
   return (
-    <div className="roster-card glass">
-      <div className="avatar-container">
+    <div className="team-card animate-fade-in">
+      <div className="team-image-wrapper">
         {!imageError && imagePath ? (
           <img 
             src={imagePath} 
             alt={name} 
-            className="avatar-image" 
+            className="team-image" 
             onError={() => setImageError(true)} 
           />
         ) : (
-          <div className="avatar-fallback" style={{ background: bgGradient }}>
+          <div className="team-image" style={{ background: bgGradient, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <span className="fallback-initials">{initials}</span>
-            <div className="cyber-glow"></div>
-            {/* Cyborg interface elements */}
-            <div className="avatar-corner-top"></div>
-            <div className="avatar-corner-bottom"></div>
-            {/* Technical grid lines overlay */}
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="1.5" className="cyber-icon">
-              <path d="M12 2a10 10 0 0 0-10 10v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a10 10 0 0 0-10-10z"/>
-              <circle cx="12" cy="11" r="3"/>
-              <path d="M7 18h10"/>
-            </svg>
           </div>
         )}
+        <div className="team-overlay"></div>
+        <div className="team-info">
+          <h4 className="team-name">{name}</h4>
+          <p className="team-role">{role}</p>
+        </div>
       </div>
-      <h4 className="roster-name">{name}</h4>
-      <p className="roster-role">{role}</p>
 
       <style jsx>{`
-        .roster-card {
-          padding: 32px 24px;
-          text-align: center;
-          transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-          position: relative;
+        .team-card {
+          border-radius: 8px;
           overflow: hidden;
-          background: rgba(10, 10, 25, 0.3);
-          border: 1px solid rgba(255, 255, 255, 0.05);
-          border-radius: var(--border-radius);
-          box-shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
-        }
-        .roster-card::before {
-          content: '';
-          position: absolute;
-          top: 0; left: 0; right: 0; bottom: 0;
-          background: linear-gradient(180deg, rgba(0, 180, 216, 0.03) 0%, transparent 100%);
-          pointer-events: none;
-        }
-        .roster-card:hover {
-          transform: translateY(-8px) scale(1.02);
-          background: rgba(255, 255, 255, 0.05);
-          border-color: var(--accent-primary);
-          box-shadow: 0 15px 40px rgba(0, 180, 216, 0.15);
-        }
-        .avatar-container {
-          width: 110px;
-          height: 110px;
-          border-radius: 50%;
-          margin: 0 auto 24px;
           position: relative;
-          padding: 4px;
-          background: var(--accent-gradient);
-          box-shadow: 0 0 20px rgba(0, 180, 216, 0.3);
-          transition: all 0.4s ease;
+          aspect-ratio: 3/4;
+          background: #d4d4d4;
+          transition: transform 0.3s ease;
         }
-        .roster-card:hover .avatar-container {
-          box-shadow: 0 0 30px rgba(0, 180, 216, 0.6);
+        .team-card:hover {
+          transform: translateY(-4px);
+        }
+        .team-image-wrapper {
+          width: 100%;
+          height: 100%;
+          position: relative;
+        }
+        .team-image {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          filter: grayscale(100%);
+          transition: filter 0.4s ease, transform 0.6s ease;
+        }
+        .team-card:hover .team-image {
+          filter: grayscale(0%);
           transform: scale(1.05);
         }
-        .avatar-image {
-          width: 100%;
-          height: 100%;
-          border-radius: 50%;
-          object-fit: cover;
-          border: 3px solid #020208;
+        .team-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 50%);
+          z-index: 1;
+          pointer-events: none;
         }
-        .avatar-fallback {
-          width: 100%;
-          height: 100%;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          position: relative;
-          border: 3px solid #020208;
-          overflow: hidden;
+        .team-info {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          padding: 20px;
+          z-index: 2;
+          text-align: left;
+        }
+        .team-name {
+          color: #ffffff;
+          margin-bottom: 4px;
+          font-size: 16px;
+          font-weight: 700;
+        }
+        .team-role {
+          color: #ffffff;
+          font-size: 12px;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          font-weight: 600;
         }
         .fallback-initials {
-          font-size: 2.4rem;
+          font-size: 3rem;
           font-weight: 800;
           color: #fff;
-          z-index: 2;
           text-shadow: 0 2px 10px rgba(0,0,0,0.6);
-          letter-spacing: -1px;
-        }
-        .cyber-glow {
-          position: absolute;
-          top: 0; left: 0; right: 0; bottom: 0;
-          background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 80%);
-          z-index: 1;
-        }
-        .avatar-corner-top {
-          position: absolute;
-          top: 8px; left: 8px; width: 6px; height: 6px;
-          border-top: 1px solid rgba(255,255,255,0.4);
-          border-left: 1px solid rgba(255,255,255,0.4);
-          z-index: 2;
-        }
-        .avatar-corner-bottom {
-          position: absolute;
-          bottom: 8px; right: 8px; width: 6px; height: 6px;
-          border-bottom: 1px solid rgba(255,255,255,0.4);
-          border-right: 1px solid rgba(255,255,255,0.4);
-          z-index: 2;
-        }
-        .cyber-icon {
-          position: absolute;
-          bottom: 8px;
-          z-index: 2;
-          opacity: 0.6;
-          transition: all 0.3s ease;
-        }
-        .roster-card:hover .cyber-icon {
-          transform: translateY(-2px) scale(1.1);
-          stroke: #fff;
-          opacity: 0.9;
-        }
-        .roster-name {
-          font-size: 1.15rem;
-          font-weight: 700;
-          color: #fff;
-          margin-bottom: 8px;
-          line-height: 1.3;
-          transition: color 0.3s;
-        }
-        .roster-card:hover .roster-name {
-          color: var(--accent-primary);
-        }
-        .roster-role {
-          font-size: 0.8rem;
-          color: rgba(255, 255, 255, 0.5);
-          text-transform: uppercase;
-          letter-spacing: 1.5px;
-          font-weight: 600;
         }
       `}</style>
     </div>
@@ -184,51 +124,297 @@ function RosterCard({ name, role, imagePath }) {
 }
 
 export default function ManagementTeam() {
-  const departments = [
+    const departments = [
     {
-      name: "Core Executive",
-      description: "Steering the visionary direction, administrative strategy, and technological integration of the Soedirman Robotic Team.",
+      name: "BPH (Badan Pengurus Harian)",
+      description: "The core executive body steering the visionary direction, administration, and financial strategy of the Soedirman Robotic Team.",
       members: [
-        { name: 'Muhammad Rizqy', role: 'President', imagePath: '/images/managementTeam/president.jpg' },
-        { name: 'Adhe Akbar Azanni', role: 'Vice President', imagePath: '/images/managementTeam/vp.jpg' }
-      ]
+        {
+                "name": "-",
+                "role": "Financial Manager's Staff 1",
+                "imagePath": "/teams/BPH/Financial Manager's Staff 1.webp"
+              },
+        {
+                "name": "-",
+                "role": "Financial Manager's Staff 2",
+                "imagePath": "/teams/BPH/Financial Manager's Staff 2.webp"
+              },
+        {
+                "name": "-",
+                "role": "Head Of Financial Manager",
+                "imagePath": "/teams/BPH/Head Of Financial Manager.webp"
+              },
+        {
+                "name": "-",
+                "role": "Head Of Secretary",
+                "imagePath": "/teams/BPH/Head Of Secretary.webp"
+              },
+        {
+                "name": "-",
+                "role": "President",
+                "imagePath": "/teams/BPH/President.webp"
+              },
+        {
+                "name": "-",
+                "role": "Secretary's Staff 1",
+                "imagePath": "/teams/BPH/Secretary's Staff 1.webp"
+              },
+        {
+                "name": "-",
+                "role": "Secretary's Staff 2",
+                "imagePath": "/teams/BPH/Secretary's Staff 2.webp"
+              },
+        {
+                "name": "-",
+                "role": "Vice President",
+                "imagePath": "/teams/BPH/Vice President.webp"
+              }
+    ]
     },
     {
-      name: "Administration & Financials",
-      description: "Managing standard corporate documentation, archival systems, and rigorous financial balance metrics.",
-      members: [
-        { name: 'Khoirunnisaa', role: 'Head of Secretary', imagePath: '/images/managementTeam/secretary.jpg' },
-        { name: 'Khaerani Julieta', role: 'Financial Manager', imagePath: '/images/managementTeam/finance.jpg' }
-      ]
-    },
-    {
-      name: "Human Resources Development",
+      name: "HRD (Human Resource Development)",
       description: "Coordinating member evaluations, training roadmaps, and organizing technical talent development tracks.",
       members: [
-        { name: 'Ramania Nur', role: 'HR Development Manager', imagePath: '/images/managementTeam/hrd.jpg' }
-      ]
+        {
+                "name": "-",
+                "role": "Head Of Human Resource",
+                "imagePath": "/teams/HRD/Head Of Human Resource.webp"
+              },
+        {
+                "name": "-",
+                "role": "HRD STAFF 1",
+                "imagePath": "/teams/HRD/HRD STAFF 1.webp"
+              },
+        {
+                "name": "-",
+                "role": "HRD STAFF 2",
+                "imagePath": "/teams/HRD/HRD STAFF 2.webp"
+              },
+        {
+                "name": "-",
+                "role": "HRD STAFF 3",
+                "imagePath": "/teams/HRD/HRD STAFF 3.webp"
+              },
+        {
+                "name": "-",
+                "role": "HRD STAFF 4",
+                "imagePath": "/teams/HRD/HRD STAFF 4.webp"
+              },
+        {
+                "name": "-",
+                "role": "HRD STAFF 5",
+                "imagePath": "/teams/HRD/HRD STAFF 5.webp"
+              },
+        {
+                "name": "-",
+                "role": "HRD STAFF 6",
+                "imagePath": "/teams/HRD/HRD STAFF 6.webp"
+              }
+    ]
     },
     {
-      name: "Public Relations",
+      name: "Team Manager",
+      description: "Overseeing operational logistics, team coordination, and ensuring seamless execution across all robot competition divisions.",
+      members: [
+        {
+                "name": "-",
+                "role": "Biantara FW Manager 1",
+                "imagePath": "/teams/MANAGER/Biantara FW Manager 1.webp"
+              },
+        {
+                "name": "-",
+                "role": "Biantara FW Manager 2",
+                "imagePath": "/teams/MANAGER/Biantara FW Manager 2.webp"
+              },
+        {
+                "name": "-",
+                "role": "Biantara LELA Manager 1",
+                "imagePath": "/teams/MANAGER/Biantara LELA Manager 1.webp"
+              },
+        {
+                "name": "-",
+                "role": "Biantara RP Manager 1",
+                "imagePath": "/teams/MANAGER/Biantara RP Manager 1.webp"
+              },
+        {
+                "name": "-",
+                "role": "Biantara RP Manager 2",
+                "imagePath": "/teams/MANAGER/Biantara RP Manager 2.webp"
+              },
+        {
+                "name": "-",
+                "role": "Blakasutha's Manager 1",
+                "imagePath": "/teams/MANAGER/Blakasutha's Manager 1.webp"
+              },
+        {
+                "name": "-",
+                "role": "Blakasutha's Manager",
+                "imagePath": "/teams/MANAGER/Blakasutha's Manager.webp"
+              },
+        {
+                "name": "-",
+                "role": "HEAD OF TEAM MANAGER",
+                "imagePath": "/teams/MANAGER/HEAD OF TEAM MANAGER.webp"
+              },
+        {
+                "name": "-",
+                "role": "Satria Manager 1",
+                "imagePath": "/teams/MANAGER/Satria Manager 1.webp"
+              },
+        {
+                "name": "-",
+                "role": "Satria Manager's 2",
+                "imagePath": "/teams/MANAGER/Satria Manager's 2.webp"
+              },
+        {
+                "name": "-",
+                "role": "Yudhistira Manager 1",
+                "imagePath": "/teams/MANAGER/Yudhistira Manager 1.webp"
+              },
+        {
+                "name": "-",
+                "role": "Yudhistira Manager 2",
+                "imagePath": "/teams/MANAGER/Yudhistira Manager 2.webp"
+              }
+    ]
+    },
+    {
+      name: "MEDKRE (Media Kreatif)",
+      description: "Creating premium digital graphics, interactive branding kits, video layouts, and managing social feeds for the team.",
+      members: [
+        {
+                "name": "-",
+                "role": "CREATIVE MEDIA STAFF 1",
+                "imagePath": "/teams/MEDKRE/CREATIVE MEDIA STAFF 1.webp"
+              },
+        {
+                "name": "-",
+                "role": "CREATIVE MEDIA STAFF 2",
+                "imagePath": "/teams/MEDKRE/CREATIVE MEDIA STAFF 2.webp"
+              },
+        {
+                "name": "-",
+                "role": "CREATIVE MEDIA STAFF 3",
+                "imagePath": "/teams/MEDKRE/CREATIVE MEDIA STAFF 3.webp"
+              },
+        {
+                "name": "-",
+                "role": "CREATIVE MEDIA STAFF 4",
+                "imagePath": "/teams/MEDKRE/CREATIVE MEDIA STAFF 4.webp"
+              },
+        {
+                "name": "-",
+                "role": "CREATIVE MEDIA STAFF 5",
+                "imagePath": "/teams/MEDKRE/CREATIVE MEDIA STAFF 5.webp"
+              },
+        {
+                "name": "-",
+                "role": "CREATIVE MEDIA STAFF 6",
+                "imagePath": "/teams/MEDKRE/CREATIVE MEDIA STAFF 6.webp"
+              },
+        {
+                "name": "-",
+                "role": "CREATIVE MEDIA STAFF 7",
+                "imagePath": "/teams/MEDKRE/CREATIVE MEDIA STAFF 7.webp"
+              },
+        {
+                "name": "-",
+                "role": "Head Of Creative Media",
+                "imagePath": "/teams/MEDKRE/Head Of Creative Media.webp"
+              }
+    ]
+    },
+    {
+      name: "PR (Public Relations)",
       description: "Handling organizational brand representation, external networks, university alliances, and media inquiries.",
       members: [
-        { name: 'Farizza Ginna', role: 'Public Relation Manager', imagePath: '/images/managementTeam/pr.jpg' }
-      ]
+        {
+                "name": "-",
+                "role": "HEAD OF PR",
+                "imagePath": "/teams/PR/HEAD OF PR.webp"
+              },
+        {
+                "name": "-",
+                "role": "PR STAFF 1",
+                "imagePath": "/teams/PR/PR STAFF 1.webp"
+              },
+        {
+                "name": "-",
+                "role": "PR STAFF 2",
+                "imagePath": "/teams/PR/PR STAFF 2.webp"
+              },
+        {
+                "name": "-",
+                "role": "PR STAFF 3",
+                "imagePath": "/teams/PR/PR STAFF 3.webp"
+              },
+        {
+                "name": "-",
+                "role": "PR STAFF 4",
+                "imagePath": "/teams/PR/PR STAFF 4.webp"
+              },
+        {
+                "name": "-",
+                "role": "PR STAFF 5",
+                "imagePath": "/teams/PR/PR STAFF 5.webp"
+              },
+        {
+                "name": "-",
+                "role": "PR STAFF 6",
+                "imagePath": "/teams/PR/PR STAFF 6.webp"
+              },
+        {
+                "name": "-",
+                "role": "PR STAFF 7",
+                "imagePath": "/teams/PR/PR STAFF 7.webp"
+              },
+        {
+                "name": "-",
+                "role": "PR STAFF 8",
+                "imagePath": "/teams/PR/PR STAFF 8.webp"
+              }
+    ]
     },
     {
-      name: "Creative Media",
-      description: "Creating premium digital graphics, interactive branding kits, video layouts, and managing social feeds.",
+      name: "Sponsor",
+      description: "Managing partnerships, funding acquisition, and corporate sponsorship relations for competition seasons.",
       members: [
-        { name: 'Amanda Jovita', role: 'Creative Media Manager', imagePath: '/images/managementTeam/creative.jpg' }
-      ]
-    },
-    {
-      name: "Operations & Operations Support",
-      description: "Overseeing robot competition mechanics, technical inventory tracks, and corporate sponsorships.",
-      members: [
-        { name: 'Arimbi Sukma', role: 'Team Manager', imagePath: '/images/managementTeam/manager.jpg' },
-        { name: 'Rizka Nur', role: 'Sponsorship Coordinator', imagePath: '/images/managementTeam/sponsorship.jpg' }
-      ]
+        {
+                "name": "-",
+                "role": "Head Of Sponsor",
+                "imagePath": "/teams/SPONSOR/Head Of Sponsor.webp"
+              },
+        {
+                "name": "-",
+                "role": "Sponsor Staff 2",
+                "imagePath": "/teams/SPONSOR/Sponsor Staff 2.webp"
+              },
+        {
+                "name": "-",
+                "role": "Sponsor Staff 3",
+                "imagePath": "/teams/SPONSOR/Sponsor Staff 3.webp"
+              },
+        {
+                "name": "-",
+                "role": "Sponsor Staff 4",
+                "imagePath": "/teams/SPONSOR/Sponsor Staff 4.webp"
+              },
+        {
+                "name": "-",
+                "role": "Sponsor Staff 5",
+                "imagePath": "/teams/SPONSOR/Sponsor Staff 5.webp"
+              },
+        {
+                "name": "-",
+                "role": "Sponsor Staff 6",
+                "imagePath": "/teams/SPONSOR/Sponsor Staff 6.webp"
+              },
+        {
+                "name": "-",
+                "role": "Sponsor's Staff 1",
+                "imagePath": "/teams/SPONSOR/Sponsor's Staff 1.webp"
+              }
+    ]
     }
   ];
 
@@ -244,13 +430,13 @@ export default function ManagementTeam() {
         justifyContent: 'center', 
         alignItems: 'center',
         position: 'relative',
-        background: 'radial-gradient(circle at center, #0a0a20 0%, #000000 100%)',
+        background: 'var(--colors-surface-canvas)',
         paddingTop: '140px',
         paddingBottom: '60px',
         overflow: 'hidden'
       }}>
         {/* Glow overlay */}
-        <div style={{ position: 'absolute', top: '-10%', left: '50%', transform: 'translateX(-50%)', width: '600px', height: '600px', background: 'radial-gradient(circle, rgba(0, 180, 216, 0.1) 0%, transparent 70%)', filter: 'blur(50px)', pointerEvents: 'none', zIndex: 1 }} />
+        
         
         <div className="container" style={{ position: 'relative', zIndex: 2, textAlign: 'center', maxWidth: '800px' }}>
           {/* Custom Breadcrumb */}
@@ -299,9 +485,9 @@ export default function ManagementTeam() {
               </div>
 
               <div className="roster-grid">
-                {dept.members.map((member) => (
+                {dept.members.map((member, mIdx) => (
                   <RosterCard 
-                    key={member.name} 
+                    key={mIdx} 
                     name={member.name} 
                     role={member.role} 
                     imagePath={member.imagePath} 

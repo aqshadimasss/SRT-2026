@@ -35,155 +35,89 @@ function RosterCard({ name, role, imagePath }) {
   const initials = getInitials(name);
 
   return (
-    <div className="roster-card glass">
-      <div className="avatar-container">
+    <div className="team-card animate-fade-in">
+      <div className="team-image-wrapper">
         {!imageError && imagePath ? (
           <img 
             src={imagePath} 
             alt={name} 
-            className="avatar-image" 
+            className="team-image" 
             onError={() => setImageError(true)} 
           />
         ) : (
-          <div className="avatar-fallback" style={{ background: bgGradient }}>
+          <div className="team-image" style={{ background: bgGradient, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <span className="fallback-initials">{initials}</span>
-            <div className="radar-sweep"></div>
-            {/* Flight altitude indicator grid overlay */}
-            <div className="horizon-line"></div>
-            <div className="altitude-marks"></div>
-            {/* Aerospace aircraft icon */}
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="1.5" className="cyber-icon">
-              <path d="M21 16V14L13 9V3.5A1.5 1.5 0 0 0 11.5 2h0A1.5 1.5 0 0 0 10 3.5V9L2 14v2l8-2.5V19l-2 1.5V22l4-1 4 1v-1.5L14 19v-7.5L21 16z"/>
-            </svg>
           </div>
         )}
+        <div className="team-overlay"></div>
+        <div className="team-info">
+          <h4 className="team-name">{name}</h4>
+          <p className="team-role">{role}</p>
+        </div>
       </div>
-      <h4 className="roster-name">{name}</h4>
-      <p className="roster-role">{role}</p>
 
       <style jsx>{`
-        .roster-card {
-          padding: 28px 20px;
-          text-align: center;
-          transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-          position: relative;
+        .team-card {
+          border-radius: 8px;
           overflow: hidden;
-          background: rgba(10, 15, 30, 0.25);
-          border: 1px solid rgba(255, 255, 255, 0.05);
-          border-radius: var(--border-radius);
-          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-        }
-        .roster-card:hover {
-          transform: translateY(-8px) scale(1.02);
-          background: rgba(255, 255, 255, 0.06);
-          border-color: var(--accent-primary);
-          box-shadow: 0 12px 30px rgba(0, 180, 216, 0.2);
-        }
-        .avatar-container {
-          width: 100px;
-          height: 100px;
-          border-radius: 50%;
-          margin: 0 auto 20px;
           position: relative;
-          padding: 3px;
-          background: linear-gradient(135deg, #00B4D8 0%, #ff5722 100%);
-          box-shadow: 0 0 15px rgba(0, 180, 216, 0.25);
-          transition: all 0.4s ease;
+          aspect-ratio: 3/4;
+          background: #d4d4d4;
+          transition: transform 0.3s ease;
         }
-        .roster-card:hover .avatar-container {
-          box-shadow: 0 0 25px rgba(0, 180, 216, 0.5);
+        .team-card:hover {
+          transform: translateY(-4px);
+        }
+        .team-image-wrapper {
+          width: 100%;
+          height: 100%;
+          position: relative;
+        }
+        .team-image {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          filter: grayscale(100%);
+          transition: filter 0.4s ease, transform 0.6s ease;
+        }
+        .team-card:hover .team-image {
+          filter: grayscale(0%);
           transform: scale(1.05);
         }
-        .avatar-image {
-          width: 100%;
-          height: 100%;
-          border-radius: 50%;
-          object-fit: cover;
-          border: 2.5px solid #03030b;
-        }
-        .avatar-fallback {
-          width: 100%;
-          height: 100%;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          position: relative;
-          border: 2.5px solid #03030b;
-          overflow: hidden;
-        }
-        .fallback-initials {
-          font-size: 2.2rem;
-          font-weight: 800;
-          color: #fff;
-          z-index: 3;
-          text-shadow: 0 2px 10px rgba(0,0,0,0.6);
-        }
-        .radar-sweep {
+        .team-overlay {
           position: absolute;
-          top: 0; left: 0; right: 0; bottom: 0;
-          background: conic-gradient(from 0deg, rgba(0, 180, 216, 0.15) 0deg, transparent 90deg, transparent 360deg);
+          inset: 0;
+          background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 50%);
           z-index: 1;
-          animation: sweep 4s linear infinite;
+          pointer-events: none;
         }
-        .horizon-line {
+        .team-info {
           position: absolute;
-          left: 10%; right: 10%; top: 50%;
-          height: 1px;
-          background: rgba(255,255,255,0.25);
+          bottom: 0;
+          left: 0;
+          right: 0;
+          padding: 20px;
           z-index: 2;
+          text-align: left;
         }
-        .altitude-marks {
-          position: absolute;
-          left: 50%; top: 20%; bottom: 20%;
-          width: 1px;
-          background: rgba(255,255,255,0.15);
-          z-index: 2;
-        }
-        .altitude-marks::before {
-          content: '';
-          position: absolute;
-          top: 30%; left: -4px; width: 9px; height: 1px; background: rgba(255,255,255,0.25);
-        }
-        .altitude-marks::after {
-          content: '';
-          position: absolute;
-          bottom: 30%; left: -4px; width: 9px; height: 1px; background: rgba(255,255,255,0.25);
-        }
-        .cyber-icon {
-          position: absolute;
-          bottom: 8px;
-          z-index: 3;
-          opacity: 0.55;
-          transition: all 0.3s ease;
-        }
-        .roster-card:hover .cyber-icon {
-          transform: translateY(-2px) rotate(10deg);
-          stroke: #ff5722;
-          opacity: 0.9;
-        }
-        .roster-name {
-          font-size: 1.1rem;
+        .team-name {
+          color: #ffffff;
+          margin-bottom: 4px;
+          font-size: 16px;
           font-weight: 700;
-          color: #fff;
-          margin-bottom: 6px;
-          line-height: 1.3;
-          transition: color 0.3s;
         }
-        .roster-card:hover .roster-name {
+        .team-role {
           color: var(--accent-primary);
-        }
-        .roster-role {
-          font-size: 0.8rem;
-          color: rgba(255,255,255,0.5);
+          font-size: 12px;
           text-transform: uppercase;
-          letter-spacing: 1.5px;
+          letter-spacing: 1px;
           font-weight: 600;
         }
-
-        @keyframes sweep {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
+        .fallback-initials {
+          font-size: 3rem;
+          font-weight: 800;
+          color: #fff;
+          text-shadow: 0 2px 10px rgba(0,0,0,0.6);
         }
       `}</style>
     </div>
@@ -191,25 +125,217 @@ function RosterCard({ name, role, imagePath }) {
 }
 
 export default function KRTITeams() {
-  const teams = [
+    const teams = [
     {
-      name: "Biantara Fixed Wing",
-      description: "Engineering long-endurance autonomous airplanes designed for mapping, aerial surveillance, and high-efficiency payload drops over extended coordinates.",
+      name: "Biantara RP",
+      description: "Racing Plane Division optimizing aerodynamics, speed, and precision control for high-speed aerial track competitions.",
+      image: "/images/krti/rp.jpg",
       members: [
-        { name: 'Althaf Ryandra', role: 'Head of Fixed Wing', imagePath: '/images/krtiTeams/althaf.jpg' },
-        { name: 'Wildan Rafiq', role: 'Chief Mechanic', imagePath: '/images/krtiTeams/wildan.jpg' },
-        { name: 'Farhan Rizky', role: 'Aviation Electronics', imagePath: '/images/krtiTeams/farhan.jpg' },
-        { name: 'Akbar Maulana', role: 'Ground Control System Dev', imagePath: '/images/krtiTeams/akbar.jpg' }
-      ]
+        {
+                "name": "-",
+                "role": "Head Of RP",
+                "imagePath": "/teams/KRTI RP/Head Of RP.webp"
+              },
+        {
+                "name": "-",
+                "role": "RP Electrician 1",
+                "imagePath": "/teams/KRTI RP/RP Electrician 1.webp"
+              },
+        {
+                "name": "-",
+                "role": "RP Electrician 2",
+                "imagePath": "/teams/KRTI RP/RP Electrician 2.webp"
+              },
+        {
+                "name": "-",
+                "role": "RP Electrician 3",
+                "imagePath": "/teams/KRTI RP/RP Electrician 3.webp"
+              },
+        {
+                "name": "-",
+                "role": "RP Mechanic 1",
+                "imagePath": "/teams/KRTI RP/RP Mechanic 1.webp"
+              },
+        {
+                "name": "-",
+                "role": "RP Mechanic 2",
+                "imagePath": "/teams/KRTI RP/RP Mechanic 2.webp"
+              },
+        {
+                "name": "-",
+                "role": "RP Mechanic 3",
+                "imagePath": "/teams/KRTI RP/RP Mechanic 3.webp"
+              },
+        {
+                "name": "-",
+                "role": "RP Mechanic 4",
+                "imagePath": "/teams/KRTI RP/RP Mechanic 4.webp"
+              },
+        {
+                "name": "-",
+                "role": "RP Mechanic 5",
+                "imagePath": "/teams/KRTI RP/RP Mechanic 5.webp"
+              },
+        {
+                "name": "-",
+                "role": "RP Mechanic 6",
+                "imagePath": "/teams/KRTI RP/RP Mechanic 6.webp"
+              },
+        {
+                "name": "-",
+                "role": "RP System 1",
+                "imagePath": "/teams/KRTI RP/RP System 1.webp"
+              },
+        {
+                "name": "-",
+                "role": "RP System 2",
+                "imagePath": "/teams/KRTI RP/RP System 2.webp"
+              },
+        {
+                "name": "-",
+                "role": "RP System 3",
+                "imagePath": "/teams/KRTI RP/RP System 3.webp"
+              }
+    ]
     },
     {
-      name: "Biantara Racing Plane",
-      description: "Designing lightweight, highly aerodynamic supersonic aerodynamic models focusing on extreme velocity, precision air gates navigation, and dynamic stability.",
+      name: "Biantara FW",
+      description: "Fixed Wing Division focusing on long-endurance autonomous flights, payload delivery, and aerial mapping capabilities.",
+      image: "/images/krti/fw.jpg",
       members: [
-        { name: 'Rafi Dhiaulhaq', role: 'Head of Racing Plane', imagePath: '/images/krtiTeams/rafi.jpg' },
-        { name: 'Bagas Fathur', role: 'Airframe Mechanic', imagePath: '/images/krtiTeams/bagas.jpg' },
-        { name: 'Ivan Aditya', role: 'High-Current Electronics', imagePath: '/images/krtiTeams/ivan.jpg' }
-      ]
+        {
+                "name": "-",
+                "role": "FW Electrician 1",
+                "imagePath": "/teams/KRTI FW/FW Electrician 1.webp"
+              },
+        {
+                "name": "-",
+                "role": "FW Electrician 2",
+                "imagePath": "/teams/KRTI FW/FW Electrician 2.webp"
+              },
+        {
+                "name": "-",
+                "role": "FW Electrician 3",
+                "imagePath": "/teams/KRTI FW/FW Electrician 3.webp"
+              },
+        {
+                "name": "-",
+                "role": "FW Electrician 4",
+                "imagePath": "/teams/KRTI FW/FW Electrician 4.webp"
+              },
+        {
+                "name": "-",
+                "role": "FW Mechanic 1",
+                "imagePath": "/teams/KRTI FW/FW Mechanic 1.webp"
+              },
+        {
+                "name": "-",
+                "role": "FW Mechanic 2",
+                "imagePath": "/teams/KRTI FW/FW Mechanic 2.webp"
+              },
+        {
+                "name": "-",
+                "role": "FW Mechanic 3",
+                "imagePath": "/teams/KRTI FW/FW Mechanic 3.webp"
+              },
+        {
+                "name": "-",
+                "role": "FW Mechanic 4",
+                "imagePath": "/teams/KRTI FW/FW Mechanic 4.webp"
+              },
+        {
+                "name": "-",
+                "role": "FW Mechanic 5",
+                "imagePath": "/teams/KRTI FW/FW Mechanic 5.webp"
+              },
+        {
+                "name": "-",
+                "role": "FW Mechanic 6",
+                "imagePath": "/teams/KRTI FW/FW Mechanic 6.webp"
+              },
+        {
+                "name": "-",
+                "role": "FW System 1",
+                "imagePath": "/teams/KRTI FW/FW System 1.webp"
+              },
+        {
+                "name": "-",
+                "role": "FW System 2",
+                "imagePath": "/teams/KRTI FW/FW System 2.webp"
+              },
+        {
+                "name": "-",
+                "role": "FW System 3",
+                "imagePath": "/teams/KRTI FW/FW System 3.webp"
+              },
+        {
+                "name": "-",
+                "role": "FW System 4",
+                "imagePath": "/teams/KRTI FW/FW System 4.webp"
+              },
+        {
+                "name": "-",
+                "role": "Head Of FW",
+                "imagePath": "/teams/KRTI FW/Head Of FW.webp"
+              }
+    ]
+    },
+    {
+      name: "Biantara LELA",
+      description: "Vertical Take-Off and Landing (VTOL) Division specializing in agile maneuvers, hybrid mechanics, and advanced telemetry.",
+      image: "/images/krti/lela.jpg",
+      members: [
+        {
+                "name": "-",
+                "role": "Head Of LELA",
+                "imagePath": "/teams/KRTI LELA/Head Of LELA.webp"
+              },
+        {
+                "name": "-",
+                "role": "LELA Electrician 1",
+                "imagePath": "/teams/KRTI LELA/LELA Electrician 1.webp"
+              },
+        {
+                "name": "-",
+                "role": "LELA Electrician 2",
+                "imagePath": "/teams/KRTI LELA/LELA Electrician 2.webp"
+              },
+        {
+                "name": "-",
+                "role": "LELA Electrician 3",
+                "imagePath": "/teams/KRTI LELA/LELA Electrician 3.webp"
+              },
+        {
+                "name": "-",
+                "role": "LELA Mechanic 1",
+                "imagePath": "/teams/KRTI LELA/LELA Mechanic 1.webp"
+              },
+        {
+                "name": "-",
+                "role": "LELA Mechanic 2",
+                "imagePath": "/teams/KRTI LELA/LELA Mechanic 2.webp"
+              },
+        {
+                "name": "-",
+                "role": "LELA Mechanic 3",
+                "imagePath": "/teams/KRTI LELA/LELA Mechanic 3.webp"
+              },
+        {
+                "name": "-",
+                "role": "LELA Mechanic 4",
+                "imagePath": "/teams/KRTI LELA/LELA Mechanic 4.webp"
+              },
+        {
+                "name": "-",
+                "role": "LELA System 1",
+                "imagePath": "/teams/KRTI LELA/LELA System 1.webp"
+              },
+        {
+                "name": "-",
+                "role": "LELA System 2",
+                "imagePath": "/teams/KRTI LELA/LELA System 2.webp"
+              }
+    ]
     }
   ];
 
@@ -287,9 +413,9 @@ export default function KRTITeams() {
               </div>
 
               <div className="roster-grid">
-                {team.members.map((member) => (
+                {team.members.map((member, mIdx) => (
                   <RosterCard 
-                    key={member.name} 
+                    key={mIdx} 
                     name={member.name} 
                     role={member.role} 
                     imagePath={member.imagePath} 

@@ -5,6 +5,7 @@ import LinearIcon from './LinearIcon';
 
 export default function Discover() {
   const [openFaq, setOpenFaq] = useState(null);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   
   const faqs = [
     { q: 'How can we initiate a partnership with your organization?', a: 'Please contact our PR team via email or Instagram DM. We are open to collaborations with universities, companies, and communities.' },
@@ -17,24 +18,45 @@ export default function Discover() {
       <div className="container">
         <div className="discover-grid">
           
-          {/* Left Side */}
+          {/* Left Side: Title + Video + Description */}
           <div className="discover-left">
             <p className="eyebrow discover-eyebrow">Explore & Learn</p>
             <h2 className="display-large discover-heading">
               DISCOVER SRT<br/>IN A <span className="chip-lime-keyword">NEW WAY</span>
             </h2>
             
-            <div className="watch-media-btn">
-              <div className="play-icon">
-                <LinearIcon name="play" size={14} color="var(--colors-text-primary)" strokeWidth={2} style={{ marginLeft: '2px' }} />
-              </div>
-              <span className="button-cap-light watch-text">WATCH THE MEDIA</span>
+            <div className="video-container" style={{ marginBottom: '32px' }}>
+             {!isVideoPlaying ? (
+               <div className="video-thumbnail" onClick={() => setIsVideoPlaying(true)}>
+                 <img src="https://img.youtube.com/vi/nWfBetKv8dg/maxresdefault.jpg" alt="SRT Journey Video" />
+                 <div className="video-play-overlay">
+                   <div className="play-icon large">
+                     <LinearIcon name="play" size={24} color="var(--colors-text-primary)" strokeWidth={2} style={{ marginLeft: '4px' }} />
+                   </div>
+                 </div>
+               </div>
+             ) : (
+               <iframe 
+                 width="100%" 
+                 height="100%" 
+                 src="https://www.youtube.com/embed/nWfBetKv8dg?autoplay=1" 
+                 title="YouTube video player" 
+                 frameBorder="0" 
+                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                 allowFullScreen
+                 className="video-iframe"
+               ></iframe>
+             )}
             </div>
 
             <p className="body-lg discover-desc">
               Have you ever wondered how our robots are built? From late night coding to arena battles, discover our journey.
             </p>
+          </div>
 
+          {/* Right Side: FAQ */}
+          <div className="discover-right">
+            <h3 className="faq-title">Frequently Asked Questions</h3>
             <div className="faq-container">
                {faqs.map((faq, i) => (
                   <div key={i} onClick={() => setOpenFaq(openFaq === i ? null : i)} className="faq-item">
@@ -48,24 +70,6 @@ export default function Discover() {
                   </div>
                ))}
             </div>
-          </div>
-
-          {/* Right Side: Media Grid */}
-          <div className="media-grid">
-             {[
-               { label: 'Workshop', icon: 'tools' },
-               { label: 'Competition', icon: 'trophy' },
-               { label: 'Team Building', icon: 'handshake' },
-               { label: 'Lab Session', icon: 'microscope' }
-             ].map((item, i) => (
-                <div key={i} className="media-card">
-                  <div className="media-card-emoji"><LinearIcon name={item.icon} size={40} color="var(--colors-accent-lime)" strokeWidth={1.2} /></div>
-                  <div className="media-play-btn">
-                    <LinearIcon name="play" size={12} color="var(--colors-text-primary)" strokeWidth={2} style={{ marginLeft: '2px' }} />
-                  </div>
-                  <p className="micro-cap media-label">{item.label}</p>
-                </div>
-             ))}
           </div>
           
         </div>
@@ -86,6 +90,18 @@ export default function Discover() {
           display: flex;
           flex-direction: column;
         }
+        .discover-right {
+          display: flex;
+          flex-direction: column;
+          padding-top: 8px;
+        }
+        .faq-title {
+          color: var(--colors-text-primary);
+          font-size: 1.4rem;
+          font-weight: 700;
+          margin-bottom: 24px;
+          letter-spacing: 0.5px;
+        }
         .discover-eyebrow {
           color: var(--colors-accent-pink);
           margin-bottom: var(--spacing-md);
@@ -96,15 +112,7 @@ export default function Discover() {
           font-size: 48px;
         }
 
-        /* Watch Button */
-        .watch-media-btn {
-          display: flex;
-          align-items: center;
-          gap: var(--spacing-lg);
-          margin-bottom: var(--spacing-xxl);
-          cursor: pointer;
-          width: fit-content;
-        }
+        /* Play Icon (Base) */
         .play-icon {
           width: 48px;
           height: 48px;
@@ -115,21 +123,6 @@ export default function Discover() {
           justify-content: center;
           transition: all 0.3s ease;
           flex-shrink: 0;
-        }
-        .play-icon span {
-          color: var(--colors-text-primary);
-          margin-left: 3px;
-          font-size: 14px;
-        }
-        .watch-media-btn:hover .play-icon {
-          background: var(--colors-accent-lime);
-          border-color: var(--colors-accent-lime);
-        }
-        .watch-media-btn:hover .play-icon span {
-          color: var(--colors-ink-deep);
-        }
-        .watch-text {
-          color: var(--colors-text-primary);
         }
 
         .discover-desc {
@@ -174,63 +167,59 @@ export default function Discover() {
           padding-right: 48px;
         }
 
-        /* Media Grid */
-        .media-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: var(--spacing-lg);
-        }
-        .media-card {
-          aspect-ratio: 1;
-          background: var(--colors-card-bg);
-          border: 1px solid var(--colors-card-border);
-          border-radius: var(--rounded-xxl);
-          position: relative;
+        /* Video Embed */
+        .video-container {
+          width: 100%;
+          aspect-ratio: 16/9;
+          border-radius: 16px;
           overflow: hidden;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          gap: var(--spacing-md);
-        }
-        .media-card:hover {
-          border-color: var(--colors-accent-violet-mid);
-          transform: scale(1.03);
-        }
-        .media-card-emoji {
-          opacity: 0.35;
-          transition: all 0.3s ease;
-          line-height: 1;
-        }
-        .media-card:hover .media-card-emoji {
-          opacity: 0.6;
-          transform: scale(1.1);
-        }
-        .media-play-btn {
-          width: 36px;
-          height: 36px;
-          border-radius: var(--rounded-full);
-          background: var(--colors-ghost-bg);
+          background: #000;
+          box-shadow: 0 16px 40px rgba(0,0,0,0.5);
           border: 1px solid var(--colors-card-border);
+          position: relative;
+        }
+        .video-thumbnail {
+          width: 100%;
+          height: 100%;
+          position: relative;
+          cursor: pointer;
+        }
+        .video-thumbnail img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.5s ease;
+        }
+        .video-thumbnail:hover img {
+          transform: scale(1.05);
+        }
+        .video-play-overlay {
+          position: absolute;
+          inset: 0;
+          background: rgba(0, 0, 0, 0.4);
           display: flex;
           align-items: center;
           justify-content: center;
-          transition: all 0.3s ease;
+          transition: background 0.3s ease;
         }
-        .media-play-btn svg {
-          color: var(--colors-text-primary);
+        .video-thumbnail:hover .video-play-overlay {
+          background: rgba(0, 0, 0, 0.2);
         }
-        .media-card:hover .media-play-btn {
+        .play-icon.large {
+          width: 72px;
+          height: 72px;
+          background: rgba(0,0,0,0.6);
+          border-color: rgba(255,255,255,0.3);
+          backdrop-filter: blur(4px);
+        }
+        .video-thumbnail:hover .play-icon.large {
           background: var(--colors-accent-lime);
           border-color: var(--colors-accent-lime);
         }
-        .media-card:hover .media-play-btn span {
-          color: var(--colors-ink-deep);
-        }
-        .media-label {
-          color: var(--colors-text-secondary);
+        .video-iframe {
+          width: 100%;
+          height: 100%;
+          border: none;
         }
         
         @media (max-width: 992px) {
