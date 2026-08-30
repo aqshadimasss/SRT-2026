@@ -166,7 +166,7 @@ export default function InternshipForm() {
 
         {/* Heading */}
         <h2 style={{ fontSize: '2.2rem', fontWeight: 800, color: '#fff', marginBottom: '12px', letterSpacing: '-0.5px' }}>
-          Terima Kasih! 🎉
+          Terima Kasih
         </h2>
         <p style={{ color: 'rgba(255,255,255,0.65)', fontSize: '1.05rem', marginBottom: '48px', maxWidth: '480px', margin: '0 auto 48px auto', lineHeight: 1.7 }}>
           Pendaftaranmu telah kami terima. Selesaikan dua langkah berikut agar proses seleksimu berjalan lancar.
@@ -183,7 +183,9 @@ export default function InternshipForm() {
             padding: '24px 28px',
           }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '10px' }}>
-              <span style={{ fontSize: '1.4rem' }}>💬</span>
+              <div style={{ width: '28px', height: '28px', borderRadius: '8px', background: 'rgba(37,211,102,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style={{ color: '#25d366' }}><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.989 0C5.368 0 0 5.364 0 11.98c0 2.11.554 4.088 1.521 5.802L.057 23.979l6.351-1.648A11.954 11.954 0 0011.989 24C18.61 24 24 18.636 24 12.02 24 5.364 18.61 0 11.989 0zm0 21.818c-1.843 0-3.557-.494-5.026-1.354l-.361-.214-3.742.972.997-3.632-.235-.373a9.752 9.752 0 01-1.509-5.237c0-5.398 4.407-9.793 9.836-9.793 5.43 0 9.836 4.395 9.836 9.793 0 5.397-4.406 9.838-9.836 9.838z"/></svg>
+              </div>
               <span style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', color: '#25d366' }}>Langkah 1</span>
             </div>
             <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.95rem', marginBottom: '18px', lineHeight: 1.6 }}>
@@ -205,7 +207,9 @@ export default function InternshipForm() {
             padding: '24px 28px',
           }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '10px' }}>
-              <span style={{ fontSize: '1.4rem' }}>📅</span>
+              <div style={{ width: '28px', height: '28px', borderRadius: '8px', background: 'rgba(0,180,216,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00b4d8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              </div>
               <span style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', color: '#00b4d8' }}>Langkah 2</span>
             </div>
             <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.95rem', marginBottom: '18px', lineHeight: 1.6 }}>
