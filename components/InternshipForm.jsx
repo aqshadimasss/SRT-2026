@@ -141,9 +141,9 @@ export default function InternshipForm() {
     }
   };
 
-  // ── Placeholder links ── ganti URL di bawah ini sesuai kebutuhan
-  const WHATSAPP_LINK   = 'https://chat.whatsapp.com/XXXXXXXXXXXXXXXXXXXX'; // ← ganti link grup WA
-  const SCREENING_LINK  = 'https://calendly.com/XXXXXXXXXXXXXXXXXXXX';      // ← ganti link jadwal screening
+  // ── Links ──
+  const WHATSAPP_LINK   = 'https://chat.whatsapp.com/IZDfV2jjqBv124CtFVjnyV?s=qt&p=i&mlu=4';
+  const SCREENING_LINK  = 'https://docs.google.com/spreadsheets/d/1nZyyw7AbqYpoLg_2TU9kVedzQHwT5C5TdPSzc5MdGxU/edit?usp=sharing';
 
   if (success) {
     return (
