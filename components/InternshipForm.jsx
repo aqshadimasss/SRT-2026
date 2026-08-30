@@ -313,7 +313,7 @@ export default function InternshipForm() {
             </div>
             <div className="input-group">
               <label>Angkatan *</label>
-              <input type="number" name="angkatan" required value={formData.angkatan} onChange={handleInputChange} placeholder="Contoh: 2024" />
+              <input type="text" name="angkatan" required value={formData.angkatan} onChange={handleInputChange} placeholder="Contoh: 2024" pattern="[0-9]{4}" maxLength={4} inputMode="numeric" />
             </div>
           </div>
 
