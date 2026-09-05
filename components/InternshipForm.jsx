@@ -400,7 +400,7 @@ export default function InternshipForm() {
           </div>
 
           <div className="input-group">
-            <label>Link Bukti Upload Twibbon & Pamflet (GDrive) *</label>
+            <label>Link Bukti Upload Twibbon (GDrive) *</label>
             <input type="url" name="bukti_url" required value={formData.bukti_url} onChange={handleInputChange} placeholder="https://drive.google.com/..." />
             <span style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.4)', marginTop: '6px', display: 'block' }}>Pastikan akses link tidak di-private (Anyone with the link).</span>
           </div>
